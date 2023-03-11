@@ -1,12 +1,13 @@
 package edu.wsb.datamodellingdemo.people;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import edu.wsb.datamodellingdemo.companies.Company;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 
 import java.util.Date;
 
 @Entity
+@AllArgsConstructor
 public class Person {
 
     private String username;
@@ -16,6 +17,10 @@ public class Person {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="company_id")
+    private Company company;
 
     public Person(String username, String password, Boolean enabled) {
         this.username = username;
