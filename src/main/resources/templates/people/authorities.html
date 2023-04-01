@@ -9,36 +9,26 @@
 </head>
 <body>
 
-<div th:if="${param.error}"
-     class="alert alert-danger">
-    Błędny login lub hasło!
-</div>
+Podałeś w argumencie:
 
-<form th:action="@{/login}" method="post">
+<div th:text="${username}"></div>
+
+<hr/>
+
+<form th:action="@{'/people/' + ${username} + '/authorities'}" method="post">
     <div class="mb-3">
-        <label for="username">
-            Nazwa użytkownika
+        <label for="authority-field">
+            Nazwa uprawnienia
         </label>
 
         <input type="text"
                class="form-control"
-               id="username"
-               name="username">
-    </div>
-
-    <div class="mb-3">
-        <label for="password">
-            Hasło
-        </label>
-
-        <input type="password"
-               class="form-control"
-               id="password"
-               name="password">
+               id="authority-field"
+               name="authority">
     </div>
 
     <button type="submit" class="btn btn-primary">
-        Zaloguj
+        Dodaj uprawnienie
     </button>
 </form>
 
