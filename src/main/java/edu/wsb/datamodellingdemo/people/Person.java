@@ -1,13 +1,12 @@
 package edu.wsb.datamodellingdemo.people;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.wsb.datamodellingdemo.companies.Company;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor
 public class Person {
 
     private String username;
@@ -19,7 +18,8 @@ public class Person {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="company_id")
+    @JoinColumn(name = "company_id")
+    @JsonIgnoreProperties("people")
     private Company company;
 
     public Person(String username, String password, Boolean enabled) {
@@ -71,5 +71,13 @@ public class Person {
 
     public Long getId() {
         return id;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

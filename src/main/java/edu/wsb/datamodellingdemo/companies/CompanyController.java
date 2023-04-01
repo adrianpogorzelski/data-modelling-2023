@@ -8,4 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/companies")
 public class CompanyController {
 
+    private final CompanyRepository companyRepository;
+
+    public CompanyController(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
+
+    @GetMapping("/list")
+    public Iterable<Company> list() {
+        return companyRepository.findAll();
+    }
 }
