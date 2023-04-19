@@ -1,11 +1,9 @@
 package edu.wsb.datamodellingdemo.companies;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import edu.wsb.datamodellingdemo.homework.Corporation;
 import edu.wsb.datamodellingdemo.people.Person;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
@@ -21,6 +19,11 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties("company")
     private Set<Person> people;
+
+    @ManyToOne
+    @JoinColumn(name = "corporation_id")
+    @JsonIgnoreProperties("companies")
+    private Corporation corporation;
 
     public Company() {
     }
