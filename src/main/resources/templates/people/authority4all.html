@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New authority for all users</title>
+</head>
+<body>
+  <h1>New authority for all users</h1>
+  <form th:action="@{'/people/' + ${username} + '/authorities'}" method="post">
+    <div class="mb-3">
+      <label for="authority-field">
+        Nazwa uprawnienia
+      </label>
+
+      <input type="text"
+             class="form-control"
+             id="authority-field"
+             name="authority">
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Dodaj uprawnienie
+    </button>
+  </form>
+</body>
+</html>

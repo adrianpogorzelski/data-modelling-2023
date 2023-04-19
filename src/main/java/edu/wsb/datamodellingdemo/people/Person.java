@@ -25,7 +25,7 @@ public class Person {
     private Company company;
 
     @ManyToMany
-    @JoinTable(name = "person_authrotities",
+    @JoinTable(name = "person_authorities",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     Set<Authority> authorities;
