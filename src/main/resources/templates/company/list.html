@@ -15,12 +15,16 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Nazwa firmy</th>
+            <th scope="col">Aktywny?</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="c : ${company}">
             <th scope="row" th:text="${c.id}"></th>
             <td th:text="${c.name}"></td>
+            <td th:text="${c.enabled}"></td>
+            <td><button class="btn" th:href="@{'/company/' + ${c.id} + '/disable'}" th:method="post">Wyłącz</button></td>
         </tr>
     </tbody>
 </table>

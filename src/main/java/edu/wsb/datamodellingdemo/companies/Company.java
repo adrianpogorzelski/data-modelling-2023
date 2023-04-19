@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.wsb.datamodellingdemo.homework.Corporation;
 import edu.wsb.datamodellingdemo.people.Person;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.Set;
 
@@ -24,6 +25,9 @@ public class Company {
     @JoinColumn(name = "corporation_id")
     @JsonIgnoreProperties("companies")
     private Corporation corporation;
+
+    @ColumnDefault("true")
+    private boolean enabled;
 
     public Company() {
     }
@@ -50,5 +54,13 @@ public class Company {
 
     public void setPeople(Set<Person> people) {
         this.people = people;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

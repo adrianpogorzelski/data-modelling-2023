@@ -1,10 +1,12 @@
 package edu.wsb.datamodellingdemo.homework;
 
+import edu.wsb.datamodellingdemo.companies.Company;
 import edu.wsb.datamodellingdemo.companies.CompanyRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 // Zadanie 3
 @Controller
@@ -24,6 +26,18 @@ public class CompanyTraditionalController {
         modelAndView.setViewName("company/list");
 
         return modelAndView;
+    }
+
+    @PostMapping("/{id}/disable")
+    public String disable(@PathVariable Long id) {
+        Optional<Company> optionalCompany = companyRepository.findById(id);
+
+        optionalCompany.ifPresent((company -> {
+            company.setEnabled(false);
+            companyRepository.save(company);
+        }));
+
+        return "redirect:/company/list";
     }
 
 }
