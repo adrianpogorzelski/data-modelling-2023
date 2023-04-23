@@ -24,7 +24,7 @@
             <th scope="row" th:text="${c.id}"></th>
             <td th:text="${c.name}"></td>
             <td th:text="${c.enabled}"></td>
-            <td><button class="btn" th:href="@{'/company/' + ${c.id} + '/disable'}" th:method="post">Wyłącz</button></td>
+            <td><a class="btn btn-warning" th:href="@{'/company/' + ${c.id} + '/disable'}">Wyłącz</a></td>
         </tr>
     </tbody>
 </table>

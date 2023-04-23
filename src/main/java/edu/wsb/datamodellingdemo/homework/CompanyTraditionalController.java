@@ -28,7 +28,7 @@ public class CompanyTraditionalController {
         return modelAndView;
     }
 
-    @PostMapping("/{id}/disable")
+    @GetMapping("/{id}/disable")
     public String disable(@PathVariable Long id) {
         Optional<Company> optionalCompany = companyRepository.findById(id);
 
