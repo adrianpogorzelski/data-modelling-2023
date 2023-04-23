@@ -3,6 +3,7 @@ package edu.wsb.datamodellingdemo.people;
 import edu.wsb.datamodellingdemo.authorities.Authority;
 import edu.wsb.datamodellingdemo.authorities.AuthorityRepository;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -125,6 +126,7 @@ public class PersonTraditionalController {
     }
 
     @GetMapping("/create")
+    @Secured("ROLE_USER_CREATION")
     public ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("people/create");
