@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import ch.qos.logback.core.model.Model;
+
 import java.util.Optional;
 
 // Zadanie 3
@@ -38,6 +40,27 @@ public class CompanyTraditionalController {
         }));
 
         return "redirect:/company/list";
+    }
+
+    @GetMapping("/create")
+    public ModelAndView create() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("company/create");
+        return modelAndView;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save(@RequestParam String name) {
+        ModelAndView modelAndView = new ModelAndView();
+        
+        Company company = new Company();
+        company.setName(name);
+
+        companyRepository.save(company);
+
+        modelAndView.setViewName("redirect:/company/list");
+
+        return modelAndView;
     }
 
 }
